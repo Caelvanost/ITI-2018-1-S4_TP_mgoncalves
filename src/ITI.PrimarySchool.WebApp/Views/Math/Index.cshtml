@@ -1,0 +1,31 @@
+﻿@using ITI.PrimarySchool.WebApp.Models.MathViewModels
+@model AddNumberViewModel
+
+<h1>Ajouter deux nombres</h1>
+
+<div asp-validation-summary="All"></div>
+
+<form asp-controller="Math" asp-action="Index" method="post">
+    <label asp-for="Number1"></label>
+    <input asp-for="Number1" />
+    <div asp-validation-for="Number1"></div>
+
+    <label asp-for="Number2"></label>
+    <input asp-for="Number2" />
+    <div asp-validation-for="Number1"></div>
+
+    <button type="submit">Ajouter</button>
+</form>
+
+@*<form action="/Math" method="post">
+        <label>Nombre 1</label>
+        <input name="Number1" value="@Model.Number1" type="number" />
+
+        <label>Nombre 2</label>
+        <input name="Number2" value="@Model.Number2" type="number" />
+
+        <button type="submit">Ajouter</button>
+    </form>*@
+
+<h2>Résultat :</h2>
+@Model.Total
