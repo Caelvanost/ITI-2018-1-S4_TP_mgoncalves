@@ -1,0 +1,18 @@
+﻿@using ITI.PrimarySchool.WebApp.Models.StockViewModels
+@model ProductViewModel
+
+<form method="post" asp-controller="Stock" asp-action="Edit">
+    <label>Name</label>
+    <input asp-for="Name" />
+
+    <label>Price</label>
+    <input asp-for="Price" />
+
+    <label>Price</label>
+    <input asp-for="Weight" />
+
+    <label>Quantity</label>
+    <input asp-for="Quantity" />
+
+    <button type="submit">Valider</button>
+</form>

@@ -1,0 +1,23 @@
+﻿@using ITI.PrimarySchool.WebApp.Models.StockViewModels
+@model IReadOnlyList<ProductViewModel>
+
+<table>
+    <tr>
+        <td>Nom</td>
+        <td>Prix</td>
+        <td>Poids</td>
+        <td>Quantité</td>
+    </tr>
+
+    @foreach(var product in Model)
+    {
+    <tr>
+        <td>
+            <a href="/Stock/@(product.Id)">@product.Name</a>
+        </td>
+        <td>@product.Price</td>
+        <td>@product.Weight</td>
+        <td>@product.Quantity</td>
+    </tr>
+    }
+</table>

@@ -40,6 +40,7 @@ namespace ITI.PrimarySchool.WebApp
             services.AddSingleton<GitHubClient>();
             services.AddSingleton<GoogleAuthenticationManager>();
             services.AddSingleton<GithubAuthenticationManager>();
+            services.AddSingleton<StockService>();
 
             string secretKey = Configuration[ "JwtBearer:SigningKey" ];
             SymmetricSecurityKey signingKey = new SymmetricSecurityKey( Encoding.ASCII.GetBytes( secretKey ) );
