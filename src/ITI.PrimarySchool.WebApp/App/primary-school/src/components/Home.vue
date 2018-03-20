@@ -25,6 +25,10 @@
                 <div v-if="isLessThanTen">Le nombre est plus petit que 10</div>
             </div>
 
+            <alert type="error">
+                Voici mon message
+            </alert>
+
             <ul>
                 <li v-for="fruit of fruitsNotOrange">
                     {{ fruit }}
@@ -42,13 +46,20 @@
 </template>
 
 <script>
+import Alert from './Alert.vue'
+
 export default {
+    components: {
+        Alert
+    },
+
     data() {
         return {
             title: 'Mon titre',
             showAlert: false,
             fruits: ['apple', 'orange', 'pear'],
-            counter: 0
+            counter: 0,
+            message: 'Voici mon message'
         }
     },
 
