@@ -22,11 +22,15 @@ import TeacherAssign from './components/teachers/TeacherAssign.vue'
 
 import FollowingList from './components/github/FollowingList.vue'
 
+import PlaygroundPage from './components/Playground/PlaygroundPage.vue'
+
 const routes = [
     { path: '', component: Home, beforeEnter: requireAuth },
     
     { path: '/login', component: Login },
     { path: '/logout', component: Logout, beforeEnter: requireAuth },
+
+    { path: '/playground', component: PlaygroundPage, beforeEnter: requireAuth },
 
     { path: '/classes', component: ClassList, beforeEnter: requireAuth },
     { path: '/classes/:mode([create|edit]+)/:id?', component: ClassEdit, beforeEnter: requireAuth },
