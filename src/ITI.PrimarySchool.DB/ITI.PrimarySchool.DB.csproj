@@ -6,7 +6,38 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Scripts\*.sql" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
+    <EmbeddedResource Include="Scripts\20170123150900.0000.Create-schema-iti.sql" />
+    <EmbeddedResource Include="Scripts\20170123150900.0001.Install-tTeacher.sql" />
+    <EmbeddedResource Include="Scripts\20170123150900.0002.Install-tClass.sql" />
+    <EmbeddedResource Include="Scripts\20170123150900.0003.Install-tStudent.sql" />
+    <EmbeddedResource Include="Scripts\20170123150900.0004.Install-tGitHubStudent.sql" />
+    <EmbeddedResource Include="Scripts\20170123150900.0005.Install-vTeacher.sql" />
+    <EmbeddedResource Include="Scripts\20170123150900.0006.Install-vTeacherClass.sql" />
+    <EmbeddedResource Include="Scripts\20170123150900.0007.Install-vClass.sql" />
+    <EmbeddedResource Include="Scripts\20170123150900.0008.Install-vStudent.sql" />
+    <EmbeddedResource Include="Scripts\20170123150900.0009.Install-sTeacherCreate.sql" />
+    <EmbeddedResource Include="Scripts\20170123150900.0010.Install-sTeacherDelete.sql" />
+    <EmbeddedResource Include="Scripts\20170123150900.0011.Install-sTeacherUpdate.sql" />
+    <EmbeddedResource Include="Scripts\20170123150900.0012.Install-sClassCreate.sql" />
+    <EmbeddedResource Include="Scripts\20170123150900.0013.Install-sClassDelete.sql" />
+    <EmbeddedResource Include="Scripts\20170123150900.0014.Install-sClassUpdate.sql" />
+    <EmbeddedResource Include="Scripts\20170123150900.0015.Install-sStudentCreate.sql" />
+    <EmbeddedResource Include="Scripts\20170123150900.0016.Install-sStudentDelete.sql" />
+    <EmbeddedResource Include="Scripts\20170123150900.0017.Install-sStudentUpdate.sql" />
+    <EmbeddedResource Include="Scripts\20170123150900.0018.Install-sAssignClass.sql" />
+    <EmbeddedResource Include="Scripts\20170123150900.0019.Install-sAssignTeacher.sql" />
+    <EmbeddedResource Include="Scripts\20170123160900.0000.Install-tUser.sql" />
+    <EmbeddedResource Include="Scripts\20170123160900.0001.Install-tGoogleUser.sql" />
+    <EmbeddedResource Include="Scripts\20170123160900.0002.Install-tGithubUser.sql" />
+    <EmbeddedResource Include="Scripts\20170123160900.0003.Install-tPasswordUser.sql" />
+    <EmbeddedResource Include="Scripts\20170123160900.0004.Install-vUser.sql" />
+    <EmbeddedResource Include="Scripts\20170123160900.0005.Install-vAuthenticationProvider.sql" />
+    <EmbeddedResource Include="Scripts\20170123160900.0006.Install-sGithubUserCreateOrUpdate.sql" />
+    <EmbeddedResource Include="Scripts\20170123160900.0007.Install-sGoogleUserCreateOrUpdate.sql" />
+    <EmbeddedResource Include="Scripts\20170123160900.0008.Install-sPasswordUserCreate.sql" />
+    <EmbeddedResource Include="Scripts\20170123160900.0009.Install-sPasswordUserUpdate.sql" />
+    <EmbeddedResource Include="Scripts\20170123160900.0010.Install-sUserDelete.sql" />
+    <EmbeddedResource Include="Scripts\20170123160900.0011.Install-sUserUpdate.sql" />
   </ItemGroup>
 
   <ItemGroup>
