@@ -51,6 +51,19 @@ namespace ITI.PrimarySchool.WebApp.Controllers
             return this.CreateResult( result );
         }
 
+        [HttpPost("{id}/assignClass")]
+        public async Task AssignClass(int id, [FromBody] AssignClassViewModel model)
+        {
+           await _studentGateway.AssignClass(id, model.ClassId);
+        }
+
+        [HttpGet("{id}/assignedClass")]
+        public async Task<IActionResult> AssignedClass(int id)
+        {
+            Result<AssignedClassData> result = await _studentGateway.AssignedClass(id);
+            return this.CreateResult(result);
+        }
+
         [HttpDelete( "{id}" )]
         public async Task<IActionResult> DeleteStudent( int id )
         {

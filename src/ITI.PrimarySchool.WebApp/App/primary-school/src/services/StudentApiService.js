@@ -26,6 +26,14 @@ class StudentApiService {
     async deleteStudentAsync(studentId) {
         return await deleteAsync(`${endpoint}/${studentId}`);
     }
+
+    async getStudentAssignedClassAsync(studentId) {
+        return await getAsync(`${endpoint}/${studentId}/assignedClass`);
+    }
+
+    async assignStudentToclassAsync(studentId, classId) {
+        return await postAsync(`${endpoint}/${studentId}/assignClass`, { classId: classId });
+    }
 }
 
 export default new StudentApiService()

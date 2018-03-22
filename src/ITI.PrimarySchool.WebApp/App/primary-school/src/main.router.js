@@ -15,6 +15,7 @@ import ClassEdit from './components/classes/ClassEdit.vue'
 
 import StudentList from './components/students/StudentList.vue'
 import StudentEdit from './components/students/StudentEdit.vue'
+import StudentAssign from './components/students/StudentAssign.vue'
 
 import TeacherList from './components/teachers/TeacherList.vue'
 import TeacherEdit from './components/teachers/TeacherEdit.vue'
@@ -37,6 +38,8 @@ const routes = [
 
     { path: '/students', component: StudentList, beforeEnter: requireAuth },
     { path: '/students/:mode([create|edit]+)/:id?', component: StudentEdit, beforeEnter: requireAuth },
+    { path: '/students/assign/:id', component: StudentAssign, beforeEnter: requireAuth },
+    
 
     { path: '/teachers', component: TeacherList, beforeEnter: requireAuth },
     { path: '/teachers/:mode([create|edit]+)/:id?', component: TeacherEdit, beforeEnter: requireAuth },

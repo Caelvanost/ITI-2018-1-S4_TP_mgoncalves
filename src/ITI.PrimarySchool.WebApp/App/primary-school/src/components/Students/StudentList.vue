@@ -33,6 +33,7 @@
                     <td>{{ i.gitHubLogin }}</td>
                     <td>
                         <router-link :to="`students/edit/${i.studentId}`"><i class="fa fa-pencil"></i></router-link>
+                        <router-link :to="`students/assign/${i.studentId}`"><i class="fa fa-link"></i></router-link>
                         <a href="#" @click="deleteStudent(i.studentId)"><i class="fa fa-trash"></i></a>
                     </td>
                 </tr>
