@@ -21,7 +21,7 @@ namespace ITI.PrimarySchool.DAL
         {
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
-                return await con.QueryAsync<TeacherData>( @"select t.TeacherId, t.FirstName, t.LastName from iti.vTeacher t;" );
+                return await con.QueryAsync<TeacherData>( @"select t.TeacherId, t.FirstName, t.LastName, t.Presence from iti.vTeacher t;" );
             }
         }
 
@@ -30,7 +30,7 @@ namespace ITI.PrimarySchool.DAL
             using( SqlConnection con = new SqlConnection( _connectionString ) )
             {
                 TeacherData teacher = await con.QueryFirstOrDefaultAsync<TeacherData>(
-                    @"select t.TeacherId, t.FirstName, t.LastName from iti.vTeacher t where t.TeacherId = @TeacherId;",
+                    @"select t.TeacherId, t.FirstName, t.LastName, t.Presence from iti.vTeacher t where t.TeacherId = @TeacherId;",
                     new { TeacherId = teacherId } );
                 if( teacher == null ) return Result.Failure<TeacherData>( Status.NotFound, "Teacher not found." );
                 return Result.Success( teacher );
@@ -115,6 +115,24 @@ namespace ITI.PrimarySchool.DAL
                 if( status == 3 ) return Result.Failure( Status.BadRequest, "Class already assigned." );
 
                 Debug.Assert( status == 0 );
+                return Result.Success();
+            }
+        }
+
+        public async Task<Result> PresenceToggle(int teacherId)
+        {
+            using (SqlConnection con = new SqlConnection(_connectionString))
+            {
+                var p = new DynamicParameters();
+                p.Add("@TeacherId", teacherId);
+                p.Add("@Status", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
+                await con.ExecuteAsync("iti.sTeacherPresenceToggle", p, commandType: CommandType.StoredProcedure);
+
+                int status = p.Get<int>("@Status");
+                if (status == 1) return Result.Failure(Status.BadRequest, "Unknown teacher.");
+                if (status == 2) return Result.Failure(Status.BadRequest, "Unknown error");
+
+                Debug.Assert(status == 0);
                 return Result.Success();
             }
         }

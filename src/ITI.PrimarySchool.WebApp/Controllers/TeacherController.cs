@@ -73,5 +73,12 @@ namespace ITI.PrimarySchool.WebApp.Controllers
             Result<AssignedClassData> result = await _classGateway.AssignedClass( id );
             return this.CreateResult( result );
         }
+
+        [HttpPost( "{id}/togglePresence")]
+        public async Task<IActionResult> TogglePresence(int id)
+        {
+            Result result = await _teacherGateway.PresenceToggle(id);
+            return this.CreateResult(result);
+        }
     }
 }

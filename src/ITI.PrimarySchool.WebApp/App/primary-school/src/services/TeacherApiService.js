@@ -34,6 +34,11 @@ class TeacherApiService {
     async assignTeacherToclassAsync(teacherId, classId) {
         return await postAsync(`${endpoint}/${teacherId}/assignClass`, { classId: classId });
     }
+
+    async togglePresenceAsync(teacherId) {
+        return await postAsync(`${endpoint}/${teacherId}/togglePresence`)
+    }
+
 }
 
 export default new TeacherApiService()

@@ -14,22 +14,25 @@
                     <th>ID</th>
                     <th>Nom</th>
                     <th>Prénom</th>
+                    <th>Présence</th>
                     <th>Options</th>
                 </tr>
             </thead>
 
             <tbody>
                 <tr v-if="teacherList.length == 0">
-                    <td colspan="4" class="text-center">Il n'y a actuellement aucun professeur.</td>
+                    <td colspan="5" class="text-center">Il n'y a actuellement aucun professeur.</td>
                 </tr>
 
                 <tr v-for="i of teacherList">
                     <td>{{ i.teacherId }}</td>
                     <td>{{ i.lastName }}</td>
                     <td>{{ i.firstName }}</td>
+                    <td>{{displayPresence(i.presence)}}</td>
                     <td>
                         <router-link :to="`teachers/edit/${i.teacherId}`"><i class="fa fa-pencil"></i></router-link>
                         <router-link :to="`teachers/assign/${i.teacherId}`"><i class="fa fa-link"></i></router-link>
+                        <a href="#" @click="togglePresence(i.teacherId)"><i class="fa fa-check-square-o"></i></a>
                         <a href="#" @click="deleteTeacher(i.teacherId)"><i class="fa fa-trash"></i></a>
                     </td>
                 </tr>
@@ -53,6 +56,8 @@
             await this.refreshList();
         },
 
+        
+
         methods: {
             ...mapActions(['executeAsyncRequestOrDefault', 'executeAsyncRequest']),
 
@@ -68,7 +73,27 @@
                 catch(error) {
 
                 }
-            }
+            },
+
+            async togglePresence(teacherId) {
+                 try {
+                    await this.executeAsyncRequest(() => TeacherApiService.togglePresenceAsync(teacherId));
+                    await this.refreshList();
+                }
+                catch(error) {
+
+                }
+            },
+
+            displayPresence(presence) {
+         
+                if (presence == true) {
+                    return "";
+                } else {
+                    return "ABS";
+                }
+            },
+
         }
     }
 </script>
