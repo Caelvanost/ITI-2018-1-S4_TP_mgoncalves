@@ -35,10 +35,7 @@ namespace ITI.PrimarySchool.DAL
                 ClassData c = await con.QueryFirstOrDefaultAsync<ClassData>(
                     @"select c.ClassId,
                              c.Name,
-                             c.[Level],
-                             c.TeacherId,
-                             c.TeacherLastName,
-                             c.TeacherLastName
+                             c.[Level]
                         from iti.vClass c
                         where c.ClassId = @ClassId;",
                     new { ClassId = classId } );
