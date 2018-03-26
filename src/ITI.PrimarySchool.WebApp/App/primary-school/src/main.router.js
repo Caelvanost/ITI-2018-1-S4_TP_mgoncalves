@@ -12,6 +12,7 @@ import Logout from './components/Logout.vue'
 
 import ClassList from './components/classes/ClassList.vue'
 import ClassEdit from './components/classes/ClassEdit.vue'
+import ClassView from './components/classes/ClassView.vue'
 
 import StudentList from './components/students/StudentList.vue'
 import StudentEdit from './components/students/StudentEdit.vue'
@@ -35,6 +36,7 @@ const routes = [
 
     { path: '/classes', component: ClassList, beforeEnter: requireAuth },
     { path: '/classes/:mode([create|edit]+)/:id?', component: ClassEdit, beforeEnter: requireAuth },
+    { path: '/classes/view/:id', component: ClassView, beforeEnter: requireAuth },
 
     { path: '/students', component: StudentList, beforeEnter: requireAuth },
     { path: '/students/:mode([create|edit]+)/:id?', component: StudentEdit, beforeEnter: requireAuth },

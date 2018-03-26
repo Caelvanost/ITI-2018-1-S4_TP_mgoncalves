@@ -16,8 +16,10 @@
     <None Remove="Scripts\20180326.0001.Update-tTeacher.sql" />
     <None Remove="Scripts\20180326.0002.Install-sTeacherPresenceToggle.sql" />
     <None Remove="Scripts\20180326.0003.Update-vTeacher.sql" />
+    <None Remove="Scripts\20180326.0004.Update-vClass.sql" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Scripts\20180326.0004.Update-vClass.sql" />
     <EmbeddedResource Include="Scripts\20180326.0003.Update-vTeacher.sql" />
     <EmbeddedResource Include="Scripts\20180326.0002.Install-sTeacherPresenceToggle.sql" />
     <EmbeddedResource Include="Scripts\20180326.0001.Update-tTeacher.sql" />

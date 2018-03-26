@@ -32,6 +32,9 @@
                         <router-link :to="`classes/edit/${i.classId}`">
                             <i class="fa fa-pencil"></i>
                         </router-link>
+                        <router-link :to="`classes/view/${i.classId}`">
+                            <i class="fa fa-eye"></i>
+                        </router-link>
                         <a href="#" @click="deleteClass(i.classId)">
                             <i class="fa fa-trash"></i>
                         </a>

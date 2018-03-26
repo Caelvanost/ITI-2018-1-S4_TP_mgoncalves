@@ -140,6 +140,39 @@ namespace ITI.PrimarySchool.DAL
             }
         }
 
+        public async Task<Result<TeacherData>> GetAssignedTeacher(int classId)
+        {
+            using (SqlConnection con = new SqlConnection(_connectionString))
+            {
+                TeacherData assignedTeacherData = await con.QueryFirstOrDefaultAsync<TeacherData>(
+                    @"select c.TeacherId, 
+                             c.TeacherFirstName as FirstName, 
+                             c.TeacherLastName as LastName, 
+                             c.TeacherPresence as Presence
+                        from iti.vClass c where c.ClassId = @ClassId;",
+                    new { ClassId = classId });
+
+                if (assignedTeacherData == null) return Result.Failure<TeacherData>(Status.BadRequest, "Teacher not found.");
+
+                return Result.Success(assignedTeacherData);
+
+            }
+        }
+
+        public async Task<IEnumerable<StudentData>> GetStudentList(int classId)
+        {
+            using (SqlConnection con = new SqlConnection(_connectionString))
+            {
+                return await con.QueryAsync<StudentData>(
+                    @"select s.StudentId,
+                             s.FirstName,
+                             s.LastName,
+                             s.BirthDate
+                      from iti.vStudent s where s.ClassId = @ClassId;",
+                    new { ClassId = classId });
+            }
+        }
+
         bool IsNameValid( string name ) => !string.IsNullOrWhiteSpace( name );
 
         bool IsLevelValid( string level ) =>

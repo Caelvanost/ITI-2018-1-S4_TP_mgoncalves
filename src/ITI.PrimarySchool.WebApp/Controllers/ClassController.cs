@@ -9,13 +9,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ITI.PrimarySchool.WebApp.Controllers
 {
-    [Route( "api/[controller]" )]
-    [Authorize( AuthenticationSchemes = JwtBearerAuthentication.AuthenticationScheme )]
+    [Route("api/[controller]")]
+    [Authorize(AuthenticationSchemes = JwtBearerAuthentication.AuthenticationScheme)]
     public class ClassController : Controller
     {
         readonly ClassGateway _classGateway;
 
-        public ClassController( ClassGateway classGateway )
+        public ClassController(ClassGateway classGateway)
         {
             _classGateway = classGateway;
         }
@@ -24,46 +24,60 @@ namespace ITI.PrimarySchool.WebApp.Controllers
         public async Task<IActionResult> GetClassList()
         {
             IEnumerable<ClassData> result = await _classGateway.GetAll();
-            return Ok( result );
+            return Ok(result);
         }
 
-        [HttpGet( "{id}", Name = "GetClass" )]
-        public async Task<IActionResult> GetClassById( int id )
+        [HttpGet("{id}", Name = "GetClass")]
+        public async Task<IActionResult> GetClassById(int id)
         {
-            Result<ClassData> result = await _classGateway.FindById( id );
-            return this.CreateResult( result );
+            Result<ClassData> result = await _classGateway.FindById(id);
+            return this.CreateResult(result);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateClass( [FromBody] ClassViewModel model )
+        public async Task<IActionResult> CreateClass([FromBody] ClassViewModel model)
         {
-            Result<int> result = await _classGateway.Create( model.Name, model.Level );
-            return this.CreateResult( result, o =>
-            {
-                o.RouteName = "GetClass";
-                o.RouteValues = id => new { id };
-            } );
+            Result<int> result = await _classGateway.Create(model.Name, model.Level);
+            return this.CreateResult(result, o =>
+           {
+               o.RouteName = "GetClass";
+               o.RouteValues = id => new { id };
+           });
         }
 
-        [HttpPut( "{id}" )]
-        public async Task<IActionResult> UpdateClass( int id, [FromBody] ClassViewModel model )
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateClass(int id, [FromBody] ClassViewModel model)
         {
-            Result result = await _classGateway.Update( id, model.Name, model.Level );
-            return this.CreateResult( result );
+            Result result = await _classGateway.Update(id, model.Name, model.Level);
+            return this.CreateResult(result);
         }
 
-        [HttpDelete( "{id}" )]
-        public async Task<IActionResult> DeleteClass( int id )
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteClass(int id)
         {
-            Result result = await _classGateway.Delete( id );
-            return this.CreateResult( result );
+            Result result = await _classGateway.Delete(id);
+            return this.CreateResult(result);
         }
 
-        [HttpGet( "NotAssigned" )]
+        [HttpGet("NotAssigned")]
         public async Task<IActionResult> GetNotAssigned()
         {
             IEnumerable<ClassData> result = await _classGateway.GetNotAssigned();
-            return this.Ok( result );
+            return this.Ok(result);
+        }
+
+        [HttpGet("{id}/assignedTeacher")]
+        public async Task<IActionResult> GetAssignedTeacher(int id)
+        {
+            Result<TeacherData> result = await _classGateway.GetAssignedTeacher(id);
+            return this.CreateResult(result);
+        }
+
+        [HttpGet("{id}/studentList")]
+        public async Task<IActionResult> GetStudentList(int id)
+        {
+            IEnumerable<StudentData> result = await _classGateway.GetStudentList(id);
+            return Ok(result);
         }
     }
 }

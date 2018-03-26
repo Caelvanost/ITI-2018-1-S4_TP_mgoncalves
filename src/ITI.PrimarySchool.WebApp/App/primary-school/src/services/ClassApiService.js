@@ -30,6 +30,14 @@ class ClassApiService {
     async deleteClassAsync(classId) {
         return await deleteAsync(`${endpoint}/${classId}`);
     }
+
+    async getAssignedTeacherAsync(classId) {
+        return await getAsync(`${endpoint}/${classId}/assignedTeacher`);
+    }
+
+    async getStudentListAsync(classId) {
+        return await getAsync(`${endpoint}/${classId}/studentList`);
+    }
 }
 
 export default new ClassApiService()
